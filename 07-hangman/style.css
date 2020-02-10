@@ -5,7 +5,11 @@ body {
 
 .figure-container {
   fill: transparent;
-  stroke: #fff;
+  stroke: yellowgreen;
   stroke-width: 4px;
   stroke-linecap: round;
+}
+
+.figure-part {
+  display: none;
 }
