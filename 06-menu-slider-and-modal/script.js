@@ -21,5 +21,5 @@ close.addEventListener("click", () => {
 // Hide modal on outside click
 window.addEventListener("click", e => {
   // console.log(e.target);
-  e.target === modal ? e.target.classList.remove("show-modal") : false;
+  e.target === modal ? modal.classList.remove("show-modal") : false;
 });
