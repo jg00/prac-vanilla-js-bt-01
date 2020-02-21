@@ -12,12 +12,17 @@ body {
 .container {
   margin: auto;
   max-width: 800px;
+
+  /* margin: 0 auto; */
+  /* width: 800px; */
+  /* max-width: 100%; */
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  /* border: 1px dotted green; */
+  border: 1px dotted green;
 }
 
 .flex {
@@ -53,7 +58,7 @@ input[type="text"] {
   border-bottom-right-radius: 4px;
 }
 
-/* Meals */
+/* Meals - grid container */
 .meals {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -61,6 +66,7 @@ input[type="text"] {
   margin-top: 20px;
 }
 
+/* Meal - grid item */
 .meal {
   position: relative;
   cursor: pointer;
@@ -76,6 +82,11 @@ input[type="text"] {
   border-radius: 2px;
 }
 
+/* #single-meal {
+  width: 100%;
+} */
+
+/* Center of meal */
 .meal-info {
   position: absolute;
   top: 0;
