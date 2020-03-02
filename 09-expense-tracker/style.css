@@ -132,7 +132,7 @@ input[type="number"] {
   padding: 10px;
   margin: 10px 0;
 
-  border: 1px dotted green;
+  /* border: 1px dotted green; */
 }
 
 /* Class plus to be used at runtime */
