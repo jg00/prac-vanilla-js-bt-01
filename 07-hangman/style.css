@@ -24,8 +24,11 @@ h1 {
   margin: auto;
   height: 350px;
   width: 450px;
+
+  border: 1px dotted olivedrab;
 }
 
+/* Wrong letters - top right */
 .wrong-letters-container {
   position: absolute;
   top: 20px;
@@ -33,6 +36,8 @@ h1 {
   display: flex;
   flex-direction: column;
   text-align: right;
+
+  border: 1px dotted olivedrab;
 }
 
 .wrong-letters-container p {
@@ -43,12 +48,15 @@ h1 {
   font-size: 24px;
 }
 
+/* Word - bottom middle.  Each letter is in it's own div. */
 .word {
   display: flex;
   position: absolute;
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
+
+  border: 1px dotted olivedrab;
 }
 
 .letter {
@@ -62,6 +70,7 @@ h1 {
   width: 20px;
 }
 
+/* Figure */
 .figure-container {
   fill: transparent;
   stroke: yellowgreen;
@@ -73,6 +82,7 @@ h1 {
   display: none;
 }
 
+/* Popup - modal */
 .popup-container {
   background-color: rgba(0, 0, 0, 0.3);
   position: fixed;
@@ -114,6 +124,7 @@ h1 {
   outline: 0;
 }
 
+/*  Notification - bottom */
 .notification-container {
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10px 10px 0 0;
