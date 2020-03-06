@@ -14,6 +14,7 @@
     <h1>Music Player</h1>
 
     <div class="music-container" id="music-container">
+      <!-- Progress Bar -->
       <div class="music-info">
         <h4 class="title"></h4>
         <div class="progress-container" id="progress-container">
@@ -21,7 +22,7 @@
         </div>
       </div>
 
-      <audio src="music/ukulele.mp3" id="audio" controls></audio>
+      <audio src="music/ukulele.mp3" id="audio"></audio>
 
       <div class="img-container">
         <img src="images/ukulele.jpg" alt="music-cover" id="cover" />
@@ -31,8 +32,8 @@
         <button id="prev" class="action-btn">
           <i class="fas fa-backward"></i>
         </button>
-        <button id="play" class="action-btn">
-          <i class="fas fa-play fa-2x"></i>
+        <button id="play" class="action-btn action-btn-big">
+          <i class="fas fa-play"></i>
         </button>
         <button id="next" class="action-btn">
           <i class="fas fa-forward"></i>
