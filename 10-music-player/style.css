@@ -38,8 +38,18 @@ body {
 .img-container {
   position: relative;
   width: 110px;
+}
 
-  /* border: 1px dotted green; */
+.img-container::after {
+  content: "";
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  transform: translate(-50%, 50%);
 }
 
 .img-container img {
@@ -55,7 +65,7 @@ body {
   animation: rotate 3s linear infinite;
   animation-play-state: paused;
 
-  /* display: block; */
+  /* display: block;  Only to remove extra space under images if needed */
 }
 
 .music-container.play .img-container img {
@@ -78,8 +88,6 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 1;
-
-  /* border: 1px dotted green; */
 }
 
 .action-btn {
@@ -99,4 +107,51 @@ body {
 .action-btn.action-btn-big {
   color: #cdc2d0;
   font-size: 30px;
+}
+
+/* Music Info (inside music-container) - hidden at start, show when 'play' class added to main-container */
+.music-info {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 15px 15px 0 0;
+
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: calc(100% - 40px);
+  padding: 10px 10px 10px 150px;
+
+  opacity: 0;
+
+  transform: translateY(0%);
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+
+  z-index: 0;
+}
+
+.music-container.play .music-info {
+  opacity: 1;
+  transform: translateY(-100%);
+}
+
+.music-info h4 {
+  margin: 0;
+}
+
+/* Progress bar */
+.progress-container {
+  background: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+  height: 4px;
+  width: 100%;
+}
+
+/* The progress itself as audio is playing.  Width will be manipulated via JS. */
+.progress {
+  background-color: #fe8daa;
+  border-radius: 5px;
+  height: 100%;
+  width: 0%;
+  transition: width 0.1s linear;
 }
