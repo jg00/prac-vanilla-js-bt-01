@@ -12,13 +12,15 @@ const words = ["application", "programming", "interface", "wizard"];
 
 let selectedWord = words[Math.floor(Math.random() * words.length)]; // returns 0 - 3
 
+// State of game
 const correctLetters = []; // if we guess correctly place letter here
 const wrongLetters = []; // if we guess incorrectly place letter here
 
-// Show hidden word.  Run this function initially and after every guess to check and redisplay
+// Show hidden word by checking and displaying each letter.  Run this function initially and after every guess to check and redisplay
 function displayWord() {
   console.log(selectedWord);
 
+  // 1 Check each letter
   wordEl.innerHTML = `
     ${selectedWord
       .split("")
@@ -32,6 +34,7 @@ function displayWord() {
       .join("")}
   `;
 
+  // 2 Check current built word against selected word.
   // We need the current innerText combined but first need to remove any new line characters.
   // These innerText characters will be in ordred.
   const innerWord = wordEl.innerText.replace(/\n/g, ""); // replace \n (new line character) with an empty string.  'g' in the expression means global (ie whereever it is found).
@@ -48,10 +51,38 @@ function displayWord() {
 
 // Update the wrong letters
 function updateWrongLettersEl() {
-  console.log("Update wrong");
+  // 1 Display letters that are wrong
+  // 2 Add the figure as we get letter wrong (if letter was not already previously selected then count toward chances)
+  // 3 See if we lost the game
+
+  // Display wrong letters
+  wrongLettersEl.innerHTML = `
+    ${wrongLetters.length > 0 ? `<p>Wrong</p>` : ""}
+    ${wrongLetters.map((letter) => `<span>${letter}</span>`)}
+  `;
+
+  // Display parts
+  const figureParts = document.querySelectorAll(".figure-part");
+  // Iterate every part and display based on condition index < errors
+  figureParts.forEach((part, index) => {
+    const errors = wrongLetters.length;
+
+    // Remeber each part has an index starting at zero
+    if (index < errors) {
+      part.style.display = "block";
+    } else {
+      part.style.display = "none";
+    }
+  });
+
+  // Check if lost
+  if (wrongLetters.length === figureParts.length) {
+    finalMessage.innerText = `Unfortunately you lost. 😓`;
+    popup.style.display = "flex";
+  }
 }
 
-// Show notification
+// Show notification that only indicates if the letter was already entered previously.
 function showNotification() {
   notification.classList.add("show");
 
@@ -87,6 +118,23 @@ window.addEventListener("keydown", (e) => {
       }
     }
   }
+});
+
+// Restart game and play again
+playAgainBtn.addEventListener("click", (e) => {
+  // Empty array state
+  correctLetters.splice(0);
+  wrongLetters.splice(0);
+
+  // Get new random word
+  selectedWord = words[Math.floor(Math.random() * words.length)];
+
+  // // Display word placeholders
+  displayWord();
+
+  updateWrongLettersEl();
+
+  popup.style.display = "none";
 });
 
 displayWord();
