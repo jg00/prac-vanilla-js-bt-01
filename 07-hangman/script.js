@@ -12,7 +12,7 @@ const words = ["application", "programming", "interface", "wizard"];
 
 let selectedWord = words[Math.floor(Math.random() * words.length)]; // returns 0 - 3
 
-const correctLetters = ["w", "z", "i", "a", "r", "d"]; // if we guess correctly place letter here
+const correctLetters = []; // if we guess correctly place letter here
 const wrongLetters = []; // if we guess incorrectly place letter here
 
 // Show hidden word.  Run this function initially and after every guess to check and redisplay
@@ -36,7 +36,7 @@ function displayWord() {
   // These innerText characters will be in ordred.
   const innerWord = wordEl.innerText.replace(/\n/g, ""); // replace \n (new line character) with an empty string.  'g' in the expression means global (ie whereever it is found).
   // console.log(wordEl.innerText); // Notice that there is a new line character after each and we have to remove that.
-  console.log(innerWord);
+  // console.log(innerWord); // returns current word built from current letters displayed ex: "aiai" which we compare to the word "application".
 
   // Now we can check if we won or not
   // Display pop up message
@@ -45,5 +45,48 @@ function displayWord() {
     popup.style.display = "flex";
   }
 }
+
+// Update the wrong letters
+function updateWrongLettersEl() {
+  console.log("Update wrong");
+}
+
+// Show notification
+function showNotification() {
+  notification.classList.add("show");
+
+  setTimeout(() => {
+    notification.classList.remove("show");
+  }, 2000);
+}
+
+// Keydown letter press
+window.addEventListener("keydown", (e) => {
+  // console.log(e.keyCode);
+  if (e.keyCode >= 65 && e.keyCode <= 90) {
+    const letter = e.key;
+
+    if (selectedWord.includes(letter)) {
+      if (!correctLetters.includes(letter)) {
+        correctLetters.push(letter);
+
+        displayWord();
+      } else {
+        // If the letter is already in correctedLetters array then show notification
+        showNotification();
+      }
+    } else {
+      // If letter is not in selectedWord then push to the wrong letters array
+      if (!wrongLetters.includes(letter)) {
+        wrongLetters.push(letter);
+
+        updateWrongLettersEl();
+      } else {
+        // If the letter is already in wrongLetters array then show notification
+        showNotification();
+      }
+    }
+  }
+});
 
 displayWord();
